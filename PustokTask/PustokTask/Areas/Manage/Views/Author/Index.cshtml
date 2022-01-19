@@ -1,0 +1,43 @@
+﻿@model List<Author>
+    @{
+    ViewData["Title"] = "Index";
+    int counter = 0;
+    }
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-between">
+                <h3>Authors</h3>
+                <a asp-action="create" class="btn btn-primary">Create</a>
+            </div>
+            <div class="col-lg-12">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">FullName</th>
+                            <th scope="col">Books count</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                    {
+                        counter++;
+                        <tr>
+                            <th scope="row">@counter</th>
+                            <td>@item.Name</td>
+                            <td>@item.Books.Count</td>
+                            <td>
+                                <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                            </td><td>
+                                <a asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
